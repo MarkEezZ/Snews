@@ -27,23 +27,26 @@ interface INews {
 }
 
 type GridSectionProps = {
-    url: string;
+    skipNews: number;
 }
 
-const GridSection = ({ url }: GridSectionProps) => {
+const GridSection = ({ skipNews }: GridSectionProps) => {
+    
     const [data, setData] = useState<INews[] | null>(null);
+    const [link, setLink] = useState<string>(`https://api.spaceflightnewsapi.net/v3/articles?_limit=9&_start=${1}`);
 
     useEffect(() => {
-        fetch(url) 
+        setLink(`https://api.spaceflightnewsapi.net/v3/articles?_limit=9&_start=${skipNews}`);
+        fetch(link) 
         .then(resp => resp.json()) 
         .then(data => setData(data)) 
-    }, []);
+    }, [skipNews]);
 
     return (
         <section className='grid_section'>
             <Grid container spacing={2}>
                 {data && data.map((peace: INews) => 
-                <Grid item xs={12} sm={6} md={4} lg={3}>
+                <Grid item xs={12} sm={12} md={6} lg={4}>
                     <News peaceOfNews={peace}></News> 
                 </Grid>
                 )}
