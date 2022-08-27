@@ -1,6 +1,7 @@
-import './Grid.css';
+import './GridSection.css';
 import News from '../News/News';
 import { useState, useEffect } from 'react';
+import Grid from '@mui/material/Grid';
 
 interface INews {
     id: number,
@@ -25,11 +26,11 @@ interface INews {
     ]
 }
 
-type GridProps = {
+type GridSectionProps = {
     url: string;
 }
 
-const Grid = ({ url }: GridProps) => {
+const GridSection = ({ url }: GridSectionProps) => {
     const [data, setData] = useState<INews[] | null>(null);
 
     useEffect(() => {
@@ -39,10 +40,16 @@ const Grid = ({ url }: GridProps) => {
     }, []);
 
     return (
-        <section>
-            {data && data.map((peace: INews) => <News peaceOfNews={peace}></News> )}
+        <section className='grid_section'>
+            <Grid container spacing={2}>
+                {data && data.map((peace: INews) => 
+                <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <News peaceOfNews={peace}></News> 
+                </Grid>
+                )}
+            </Grid>
         </section>
     )
 }
 
-export default Grid;
+export default GridSection;

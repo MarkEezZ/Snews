@@ -30,7 +30,7 @@ type NewsProps = {
 const News = ({ peaceOfNews }: NewsProps) => {
     return(
         <div className='peace_of_news'>
-            <img src={peaceOfNews.imageUrl} alt={`peace_of_news_${peaceOfNews.id}`}/>
+            <div className='img' style={{backgroundImage: `url('${peaceOfNews.imageUrl}')`}}></div>
             <h2>{peaceOfNews.title}</h2>
             <p>{peaceOfNews.summary}</p>
             <p>{peaceOfNews.publishedAt}</p>

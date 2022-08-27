@@ -1,0 +1,27 @@
+.peace_of_news {
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    padding: 5%;
+    box-sizing: border-box;
+}
+
+.img {
+    height: 15vw;
+    background-size: cover;
+}
+
+@media screen and (max-width:1199px) {
+    .img {
+        height: 20vw;
+    }
+}
+@media screen and (max-width: 899px) {
+    .img {
+        height: 30vw;
+    }
+}
+@media screen and (max-width:599px) {
+    .img {
+        height: 50vw;
+    }
+}
