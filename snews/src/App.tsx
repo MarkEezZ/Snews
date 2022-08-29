@@ -10,6 +10,7 @@ import NextPage from './Components/PaginationBar/NextPage';
 import PreviousPage from './Components/PaginationBar/PreviousPage';
 import Header from './Components/Header/Header';
 import Search from './Components/Header/Search';
+import Footer from './Components/Footer/Footer';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -18,10 +19,11 @@ function App() {
   const [inputValue, getInputValue] = useState<string>('');
 
   return (
+    <>
+      <Header>
+        <Search getInputValue={getInputValue}></Search>
+      </Header>
       <Body>
-        <Header>
-          <Search getInputValue={getInputValue}></Search>
-        </Header>
         <GridSection inputValue={inputValue} newsPerPage={newsPerPage} skipNews={currentPage * newsPerPage}></GridSection>
         <PaginationBar>
           <ArrowLeft lastPageList={setAddToPage} addToPage={addToPage} refreshCurrentPage={setCurrentPage} currentPage={currentPage}></ArrowLeft>
@@ -35,6 +37,8 @@ function App() {
           <ArrowRight nextPageList={setAddToPage} addToPage={addToPage} refreshCurrentPage={setCurrentPage}></ArrowRight>
         </PaginationBar>
       </Body>
+      <Footer></Footer>  
+    </>
     );
 }
 
