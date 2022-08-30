@@ -13,9 +13,9 @@ const Search = ({getInputValue}: SearchProps) => {
     return (
         <div className="search">
             <input type="text" placeholder='Search...' onChange={getValue}/>
-            <button>
+            <div>
                 <div className='search_icon'></div>
-            </button>
+            </div>
         </div>
     )
 }
