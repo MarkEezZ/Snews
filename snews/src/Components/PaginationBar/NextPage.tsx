@@ -1,21 +1,28 @@
+import { useDispatch } from 'react-redux';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { pageActionsTypes } from '../../types/pageTypes';
 import './PaginationBar.css';
 
 type NextPageProps = {
-    currentPage: number,
-    nextPage(page: number): void,
     refreshPageList(number: number): void,
     addToPage: number
 }
 
-const NextPage = ({currentPage, nextPage, refreshPageList, addToPage}: NextPageProps) => {
+const NextPage = ({refreshPageList, addToPage}: NextPageProps) => {
+
+    const dispatch = useDispatch();
+    const currentPage_ = useTypedSelector(state => state.page);
+
+    const setNextPage = () => {
+        dispatch({type: pageActionsTypes.NEXT_PAGE, payload: 0});
+        if (currentPage_ % 5 == 0) {
+            refreshPageList(addToPage + 5);
+        }
+    }
+
     return (
-        <button onClick={() => {
-            nextPage(currentPage + 1);
-            if (currentPage % 5 == 0) {
-                refreshPageList(addToPage + 5);
-            }
-        }}>{'>'}</button>
-    )
+        <button onClick={setNextPage}>{'>'}</button>
+    );
 }
 
 export default NextPage;
