@@ -6,6 +6,10 @@ body {
     margin:0;
 }
 
+main {
+    width: 100%;
+}
+
 @font-face {
     font-family: 'TitilliumWeb';
     src: url('../fonts/TitilliumWeb/TitilliumWeb-Regular.ttf') format('truetype');
@@ -15,5 +19,11 @@ body {
 @font-face {
     font-family: 'TitilliumWeb';
     src: url('../fonts/TitilliumWeb/TitilliumWeb-Bold.ttf') format('truetype');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('../fonts/Ubuntu/Ubuntu-Bold.ttf') format('truetype');
     font-weight: 700;
 }

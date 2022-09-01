@@ -1,22 +1,27 @@
+import { useDispatch } from 'react-redux';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { pageActionsTypes } from '../../types/pageTypes';
 import './PaginationBar.css';
 
 type TabProps = {
     pageNumber: number,
-    changeCurrentPage(number: number): void,
-    currentPage: number
 }
 
-const Tab = ({pageNumber, changeCurrentPage, currentPage}: TabProps) => {
-    if (pageNumber == currentPage) {
+const Tab = ({pageNumber}: TabProps) => {
+
+    const dispatch = useDispatch();
+    const currentPage_ = useTypedSelector(state => state.page);
+
+    if (pageNumber == currentPage_) {
         return (
-            <button style={{backgroundColor: 'rgb(0, 216, 151)', color: 'white'}} onClick={() => {
-                changeCurrentPage(pageNumber);
+            <button style={{backgroundColor: 'rgb(0, 228, 161)', color: 'white'}} onClick={() => {
+                dispatch({type: pageActionsTypes.SELECT_PAGE, payload: pageNumber});
             }}>{pageNumber}</button>
         )
     }
     return (
         <button onClick={() => {
-            changeCurrentPage(pageNumber);
+            dispatch({type: pageActionsTypes.SELECT_PAGE, payload: pageNumber});
         }}>{pageNumber}</button>
     )
 }

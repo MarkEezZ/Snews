@@ -27,27 +27,27 @@ interface INews {
 }
 
 type GridSectionProps = {
-    skipNews: number;
+    skipNews: number,
+    newsPerPage: number,
+    inputValue: string
 }
 
-const GridSection = ({ skipNews }: GridSectionProps) => {
-    
+const GridSection = ({ skipNews, newsPerPage, inputValue}: GridSectionProps) => {
     const [data, setData] = useState<INews[] | null>(null);
-    const [link, setLink] = useState<string>(`https://api.spaceflightnewsapi.net/v3/articles?_limit=9&_start=${1}`);
 
     useEffect(() => {
-        setLink(`https://api.spaceflightnewsapi.net/v3/articles?_limit=9&_start=${skipNews}`);
+        let link: string = `https://api.spaceflightnewsapi.net/v3/articles?_limit=${newsPerPage}&title_contains=${inputValue}&_start=${skipNews}`;
         fetch(link) 
         .then(resp => resp.json()) 
         .then(data => setData(data)) 
-    }, [skipNews]);
+    }, [skipNews, inputValue]);
 
     return (
-        <section className='grid_section'>
+        <section className='grid_section animation-1'>
             <Grid container spacing={2}>
-                {data && data.map((peace: INews) => 
-                <Grid item xs={12} sm={12} md={6} lg={4}>
-                    <News peaceOfNews={peace}></News> 
+                {data && data.map((peace: INews, index: number) => 
+                <Grid key={`grid_item_${index}`} item xs={12} sm={12} md={6} lg={4}>
+                    <News key={`news_${peace.id}`} peaceOfNews={peace}></News> 
                 </Grid>
                 )}
             </Grid>

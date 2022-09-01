@@ -7,6 +7,7 @@
     box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.164);
     transition: 0.3s;
 }
+
 .peace_of_news:hover {
     box-shadow: 3px 2px 5px rgba(0, 0, 0, 0);
     transition: 0.3s;

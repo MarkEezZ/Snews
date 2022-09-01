@@ -5,7 +5,7 @@
     background-color: rgb(233, 233, 233);
     padding-bottom: 10vh;
     justify-content: center;
-    gap: 10px;
+    gap: 1vw;
 }
 
 .pagination_bar > button {
