@@ -1,13 +1,13 @@
+import { useDispatch } from 'react-redux';
+import { GET_INPUT_VALUE } from '../../types/inputValueTypes';
 import './Header.css';
 
-type SearchProps = {
-    getInputValue(value: string): void
-}
-
-const Search = ({getInputValue}: SearchProps) => {
+const Search = () => {
     
+    const dispatch = useDispatch();
+
     const getValue = (e: any) => {
-        getInputValue(e.target.value);
+        dispatch({type: GET_INPUT_VALUE, payload: e.target.value});
     }
 
     return (

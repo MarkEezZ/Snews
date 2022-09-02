@@ -1,24 +1,20 @@
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { REFRESH_ADDTOPAGE } from '../../types/addToPageTypes';
 import { pageActionsTypes } from '../../types/pageTypes';
 import './PaginationBar.css';
 
-type ArrowLeftProps = {
-    lastPageList(addToPage: number): void;
-    addToPage: number,
-}
-
-const ArrowLeft = ({lastPageList, addToPage}: ArrowLeftProps) => {
+const ArrowLeft = () => {
 
     const dispatch = useDispatch();
     const currentPage_ = useTypedSelector(state => state.page);
+    const addToPage_ = useTypedSelector(state => state.addToPage);
 
-    if (addToPage > 0 || currentPage_ > 5) {
+    if (addToPage_ > 0 || currentPage_ > 5) {
         return (
             <button onClick={() => {
-                let newAdd = addToPage - 5;
-                lastPageList(newAdd);
-                dispatch({type: pageActionsTypes.SELECT_PAGE, payload: addToPage});
+                dispatch({type: REFRESH_ADDTOPAGE, payload: addToPage_ - 5});
+                dispatch({type: pageActionsTypes.SELECT_PAGE, payload: addToPage_});
             }}>{'<<'}</button>
         );
     }

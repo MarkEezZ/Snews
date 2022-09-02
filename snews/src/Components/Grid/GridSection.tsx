@@ -2,6 +2,7 @@ import './GridSection.css';
 import News from '../News/News';
 import { useState, useEffect } from 'react';
 import Grid from '@mui/material/Grid';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 
 interface INews {
     id: number,
@@ -28,12 +29,12 @@ interface INews {
 
 type GridSectionProps = {
     skipNews: number,
-    newsPerPage: number,
-    inputValue: string
+    newsPerPage: number
 }
 
-const GridSection = ({ skipNews, newsPerPage, inputValue}: GridSectionProps) => {
+const GridSection = ({ skipNews, newsPerPage}: GridSectionProps) => {
     const [data, setData] = useState<INews[] | null>(null);
+    const inputValue = useTypedSelector(state => state.input);
 
     useEffect(() => {
         let link: string = `https://api.spaceflightnewsapi.net/v3/articles?_limit=${newsPerPage}&title_contains=${inputValue}&_start=${skipNews}`;

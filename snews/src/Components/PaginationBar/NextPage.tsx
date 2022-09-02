@@ -1,22 +1,19 @@
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { REFRESH_ADDTOPAGE } from '../../types/addToPageTypes';
 import { pageActionsTypes } from '../../types/pageTypes';
 import './PaginationBar.css';
 
-type NextPageProps = {
-    refreshPageList(number: number): void,
-    addToPage: number
-}
-
-const NextPage = ({refreshPageList, addToPage}: NextPageProps) => {
+const NextPage = () => {
 
     const dispatch = useDispatch();
     const currentPage_ = useTypedSelector(state => state.page);
+    const addToPage_ = useTypedSelector(state => state.addToPage);
 
     const setNextPage = () => {
         dispatch({type: pageActionsTypes.NEXT_PAGE, payload: 0});
         if (currentPage_ % 5 == 0) {
-            refreshPageList(addToPage + 5);
+            dispatch({type: REFRESH_ADDTOPAGE, payload: addToPage_ + 5});
         }
     }
 
