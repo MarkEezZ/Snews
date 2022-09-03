@@ -9,7 +9,7 @@ const Footer = () => {
                 <p>7517097@gmail.com</p>
                 <p>xxx@gmail.com</p>
             </div>
-            <p>2003-2022 © Snews — Internet news portal about space. All rights reserved.</p>
+            <p>2003-2022 © Snews — Internet news portal about space. All rights are not reserved.</p>
         </footer>
     );
 }
